@@ -1,0 +1,22 @@
+# Weijie Lyu: profile summary
+
+- **Status:** final-year EECS Ph.D. at UC Merced (Aug 2023–present). Advisor: Prof. Ming-Hsuan Yang. Graduating in 2027.
+- **Education:**
+  - M.S. CS, UIUC, 2023 (advisor Derek Hoiem)
+  - B.E. CS, ShanghaiTech, 2021
+- **Homepage:** https://www.wlyu.me/
+- **Research focus:** video generation and 3D/4D reconstruction.
+- **Internships:**
+  - Apple, Research Scientist Intern, May–Aug 2026: agentic auto-research for video generation
+  - ByteDance, Research Scientist Intern, Feb–May 2026: VGC, geometry correction for generated videos
+  - Adobe Research, Research Scientist/Engineer Intern, May 2024–Jan 2026: FaceCam and FaceLift
+- **Selected papers:**
+  - Learning to Correct Geometry in Generated Videos (NeurIPS 2026)
+  - FaceCam: Portrait Video Camera Control (CVPR 2026)
+  - Edit3r: Instant 3D Scene Editing (ECCV 2026 Oral)
+  - Gaga: Group Any Gaussians (TMLR 2026)
+  - FaceLift: Single Image 3D Face Reconstruction (ICCV 2025)
+  - InstaInpaint and HoliGS (NeurIPS 2025)
+  - PTT (CVPR 2024)
+- **Open source:** FaceLift (500+ stars), Gaga (400+ stars).
+- **Job target:** US full-time RS, RE or MLE roles at big tech and AI startups.
