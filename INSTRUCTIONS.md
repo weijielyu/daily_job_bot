@@ -42,7 +42,16 @@ Search for postings from roughly the last 7 days, and include older ones you hav
    ```
    python3 -c "import hashlib,sys;u=sys.argv[1].strip().split('#')[0].rstrip('/');print(hashlib.sha1(u.encode()).hexdigest()[:16])" URL
    ```
-2. Search, and collect candidate postings.
+   Also read every doc id in the tracker's `jobs` collection with ArtifactData `list` (limit 1000, follow `next_cursor`). Treat the union of those ids and `seen.json` as already seen, and add any tracker ids missing from `seen.json` to it. The tracker is the source of truth when a previous push failed.
+2. Search thoroughly and collect candidate postings. Plan for 10–20 minutes, not 2.
+   - Fetch every listed Ashby and Greenhouse board through its API.
+   - For big tech, query each careers site's own search for "research scientist" combined with video, 3D, generative and world model.
+     - Apple: https://jobs.apple.com/en-us/search?search=research%20scientist%20video
+     - NVIDIA and Adobe: Workday search
+     - TikTok/ByteDance: lifeattiktok.com or joinbytedance.com search
+     - Others: Google careers search
+   - Run all the topic searches listed above.
+   - If a board's API returns 404, find the company's real careers page with a web search instead of skipping it.
 3. Drop a candidate if either is true:
    - its id is already in `seen.json`
    - the same company has the same title, ignoring case and punctuation
