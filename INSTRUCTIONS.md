@@ -65,3 +65,4 @@ Search for postings from roughly the last 7 days, and include older ones you hav
    - Then `set` `meta/run` to `{last_run: <today>, added: N}`. `meta/run` already exists, so read it first and pass `if_version`.
    - Never overwrite an existing `jobs` doc. The user edits status and notes there.
 10. Finish with a short summary: how many new postings, the top ones, and whether the tracker was updated.
+11. Send a phone notification with the PushNotification tool. If it isn't listed, load it with ToolSearch `select:PushNotification`. Keep it to one or two lines, such as "N new RS postings today. Top: <Company – Title>, … Tracker: https://claude.ai/artifact/GHtnjGKVAwJ3WHnUMx94Rv". When nothing new turned up, send "No new postings today".
