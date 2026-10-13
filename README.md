@@ -5,5 +5,7 @@ A Claude Code cloud routine runs every day at 15:00 UTC, which is 8:00 AM PDT an
 - `INSTRUCTIONS.md`: what the routine does. Edit this file to change the search.
 - `profile.md`: candidate summary.
 - `seen.json`: every posting found so far, used to skip duplicates.
+- `rejected.json`: postings reviewed and turned down, so they are not reviewed again.
+- `scan.py`: queries every job-board and careers-site API and writes unseen research roles to `candidates.json`.
 - `digests/YYYY-MM-DD.md`: new postings for each day.
 - Tracker: https://claude.ai/artifact/GHtnjGKVAwJ3WHnUMx94Rv
