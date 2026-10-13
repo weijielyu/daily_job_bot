@@ -57,6 +57,7 @@ These steps are required. Do every one, every run. A run that skips the scanner 
      python3 -c "import hashlib,sys;u=sys.argv[1].strip().split('#')[0].rstrip('/');print(hashlib.sha1(u.encode()).hexdigest()[:16])" URL
      ```
    - Read every doc id in the tracker's `jobs` collection with ArtifactData `list` (limit 1000, follow `next_cursor`). Write them one per line to `/tmp/tracker_ids.txt`, and add any that are missing to `seen.json`. The tracker is the source of truth when a previous push failed.
+   - Read the tracker doc `meta/rejected` (`get`). Its field `ids` maps id to "title | reason". Merge it into `rejected.json`. If the doc doesn't exist yet, start from the file alone.
 2. **Run the scanner:** `python3 -I scan.py /tmp/tracker_ids.txt`
    - Keep its coverage table; it goes into the digest.
    - If a source shows ERROR, retry it once. If it still fails, search that company on the web instead.
@@ -69,7 +70,7 @@ These steps are required. Do every one, every run. A run that skips the scanner 
 5. **Verify and build records.**
    - Every kept posting must be a live, specific posting page you actually fetched. Never invent postings or URLs.
    - For each one, build: `{company, title, location, url, category: "Big Tech"|"Startup"|"Other", fit: 1-5, why: "<one line tying it to his research>", posted: "<date or empty>", verified: true, first_seen: "<today, YYYY-MM-DD, America/Los_Angeles>", status: "new", notes: ""}`
-6. Add the new postings to `seen.json`, and save `rejected.json`.
+6. Add the new postings to `seen.json`, and save `rejected.json`. Also write the full merged rejected map to the tracker doc `meta/rejected` as `{ids: {...}}`. Use `set`, with `if_version` when the doc already exists. This keeps the rejected list across runs even when the push to GitHub fails.
 7. Write `digests/<today>.md`, using `digests/2026-10-08.md` as the format. Put fit 5 and fit 4 first, and give one line per posting with its `why`. If nothing new turned up, still write the file and say "No new postings today". End the digest with a **Coverage** section. It contains the scanner's table, then the no-API sources and topic searches, each marked done or failed with a reason, then the number of candidates rejected.
 8. Commit and push to `main`, with the message `digest: <today> (+N)`.
 9. Update the tracker artifact (https://claude.ai/artifact/GHtnjGKVAwJ3WHnUMx94Rv) if the `ArtifactData` tool is available. If not, skip this step and say so.
